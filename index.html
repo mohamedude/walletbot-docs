@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Wallet user guide: ">
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <title>Wallet bot user guide</title>
+  </head>
+  <body>
+    <!-- START HEADER -->
+    <div id="header_wrap" class="outer">
+      <header class="inner">
+        <h1 id="project_title">Wallet / walletbot user guide</h1>
+        <h2 id="project_tagline">A multi-coin multi-platform tip, soak, utility
+          bot by Bill48105</h2>
+      </header>
+    </div>
+    <!-- END HEADER -->
+    <!-- START MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <!-- START INTRO -->
+        <h2>Getting started</h2>
+        <p>To get started with Wallet you need to be registered &amp; logged
+          into whatever platform you are accessing the bot on.&nbsp; For example
+          on Freenode IRC ensure that you have registered and identified with
+          NickServ on Freenode. You can register using the following command:</p>
+        <pre><code>/msg NickServ REGISTER &lt;password&gt; &lt;email-address&gt;</code></pre>
+        <br>
+        <p>Once registered &amp; logged in, you are ready to go. There's no need
+          to create an account with Wallet. You can increase your account
+          balance in two ways; receiving coins through faucet/tips/soaks/games,
+          or through depositing directly from a wallet or exchange. (See deposit
+          command)</p>
+        <!-- END INTRO -->
+        <!-- START COINS -->
+        <h2>Coins</h2>
+        <p>To view all the coins that Wallet current supports use the following
+          command:</p>
+        <pre><code>.coins list<br>&lt;Wallet&gt; Bill48105: Supported coins: BTC CORG DOGE DOGET GRLC LDOGE LTC MNC PIGGY ROGER SOON SYS VTC XMR XVG XZC  - Usage: .ltc balance -or- .balance $LTC<br><br>NOTE: The default trigger prefix is . (dot) but it might vary depending<br>on how you access Wallet. For example if the prefix is ! you'd use:<br>!coins list<br>Or on reddit you just mention the bot:<br>/u/walletbot coins list</code></pre>
+        <p>Since Wallet supports multiple coins, there is a global default coin
+          of DOGE and each channel has ability to set their own default coin as
+          well.&nbsp; But you can always choose an available coin when issuing
+          commands:</p>
+        <pre><code>.btc balance<br>&lt;Wallet&gt; Bill48105: • Your balance is: 0.0000006 BTC (≈0.03 USD)<br><br>.tip Bill48105 0.1 XMR<br>&lt;Wallet&gt; Bill48105 tipped 0.1 XMR (≈$27.87) to Bill48105 [abcdef]</code><code>.info $btc<br>&lt;Wallet&gt; Bill48105: Bitcoin (BTC) • Ver: 160000 • Proto: 70015 • Blocks: 671364 • Diff: 21724.13B • Conn: 8 • Last: ≈31.04 min • Avg: ≈6.79 min • Confirm: ≈1 hr 34 min<br><br>reddit:<br>/u/walletbot balance $ltc<br><br>NOTE: You can select the coin in any 1 of the 3 ways shown on most platforms.<br>Commands and coins are NOT case sensitive.</code></pre>
+        <!-- END COINS -->
+        <!-- START BONUSTIME -->
+        <h2>Help</h2>
+        <p>You can get a list of available commands issuing the help command:</p>
+        <pre><code>.help<br>&lt;Wallet&gt; Bill48105: I'm a cool multi-coin multi-platform bot by Bill48105. Docs: https://bill48105.github.io/wallet/ | My core commands: .balance .deposit .faucet .ping .soak .tip .val .withdraw  | .help &lt;games|share|misc|other&gt; to see others | .help &lt;cmd&gt; for more details.</code></pre>
+        <p><br>
+        </p>
+        <p>You can help get detailed help &amp; example usage on a particular
+          command:</p>
+        <pre><code>.help coins<br>&lt;Wallet&gt; Bill48105: Help: .coins &lt;list|set&gt; - list shows available coins. set saves current coin as default</code></pre>
+        <p><br>
+        </p>
+        <p></p>
+        <!-- END BONUSTIME -->
+        <!-- START DEPOSIT -->
+        <h2>Deposit</h2>
+        <p>To deposit into your account use the following commands to receive
+          your deposit addresses:</p>
+        <pre><code>.deposit<br>.btc deposit<br>reddit:<br>/u/walletbot deposit $ltc</code></pre>
+        <!-- END DEPOSIT -->
+        <!-- START WITHDRAW -->
+        <h2>Withdraw</h2>
+        <p>To withdraw coins from your account use the following commands:
+          (Minimum &amp; fee vary by coin)</p>
+        <pre><code>.withdraw &lt;address&gt; &lt;amount|all&gt;<br>.ltc withdraw &lt;address&gt; &lt;amount|all&gt;<br>.xmr withdraw &lt;address&gt; &lt;amount|all&gt;<br>reddit:<br>u/walletbot withdraw &lt;address&gt; &lt;amount|all&gt; $DOGE</code></pre>
+        <!-- END WITHDRAW -->
+        <!-- START BALANCES -->
+        <h2>Balances</h2>
+        <p>To see how many coins are in your account use the following commands:</p>
+        <pre><code>.balances<br>.roger balance<br>.bal $ROGER</code></pre>
+        <!-- END BALANCES -->
+        <!-- START SOAK -->
+        <h2>Soak</h2>
+        <p>A soak allows a user to choose a specific amount of coins to be
+          distributed evenly among the recently active users within a channel. </p>
+        <p>Example: When there are 10 active users in a channel and a user
+          decides to soak 100 coins each active user will receive 10 coins each.
+        </p>
+        <p>To soak use the command: (&lt;minutes&gt; is optional - Default is
+          try to get last 10 users)</p>
+        <pre><code>.soak &lt;amount&gt; &lt;minutes&gt;<br>.ltc soak $0.10 (Soaks 10 cents worth of ltc)<br>.soak 100 $ROGER 1440 (Soaks 100 ROGER to all people active in last 24 hours)</code></pre>
+        <!-- END SOAK -->
+        <!-- START WALKTHROUGH -->
+        <h2>Soak walkthrough</h2>
+        <p>This walkthrough will show and explain what happens when a soak
+          occurs in the channel. Often times new users are confused about what
+          the response from Wallet means after a soak so this walkthrough aims
+          to breakdown the response and explain each part thoroughly. </p>
+        <p>A user soaks 10 DOGE (default coin) in the channel as so.</p>
+        <pre><code>.soak 5</code></pre>
+        <p>Wallet then outputs something that looks like the following:</p>
+        <pre><code>&lt;Wallet&gt; user1 soaked 0.5 DOGE each: 10 users [abcdef]</code></pre>
+        <!-- START BREAKDOWN -->
+        <h3>Breakdown of the response</h3>
+        <p>Wallet will first split the soak evenly between all active users, 50
+          in this case so each user will receive 0.2 coins each. </p>
+        <pre><code>&lt;Wallet&gt; user1 soaked 50 with 0.2 DOGE each</code></pre>
+        <p><strong>Scraps &amp; Community funded @bonuspot<br>
+          </strong></p>
+        <p>Any left over coins that cannot be divided as whole coins will go to
+          the community @bonuspot as scraps, 0 coins in this case. Scraps go to
+          @bonuspot balance and are used to fund community features such as
+          faucet, confetti ducks, games, etc. </p>
+        <p><strong>Soaked users</strong></p>
+        <p>The last part of the syntax is the users who are included in the
+          soak, these are users who are active in the channel either by talking
+          within the last X minutes. This allows users to be notified when they
+          are included in soaks.</p>
+        <pre><code>user2 user2 user3 user4 user5</code></pre>
+        <p>If the list is to large the bot will only display a random subset
+          &amp; a code that you can use whogot command to lookup who was
+          included</p>
+        <pre><code>user2 user2 user3 user4 user5  (+15 more) [abcde]<br>.whogot abcde<br>&lt;wallet&gt; user1 -&gt; user15 + 17 others.</code></pre>
+        <!-- END BREAKDOWN -->
+        <!-- END WALKTHROUGH -->
+        <!-- START RESERVE -->
+        <h2>Reserve</h2>
+        <p>Reserves are secondary balances separate from the one used for
+          tipping and soaking.&nbsp; Your reserve can be useful to put away
+          coins that are not show in your balance by default (privacy when doing
+          balance in channel) or since coins can -only- be used with 'release'
+          command, helps prevent accidental use like .soak all etc</p>
+        <p><strong>Balances</strong></p>
+        <pre><code>.balance reserve<br>&lt;wallet&gt; Bill48105: Your reserve balance is 117 DOGE<br>.ltc balance reserve<br>.balance reserve $roger</code></pre>
+        <p><strong>Adding to Reserve</strong></p>
+        <pre><code>.reserve &lt;amount&gt;<br>.btc reserve 0.0001<br>.reserve 0.001 $LTC</code></pre>
+        <p><strong>Releasing from Reserve</strong></p>
+        <pre><code>.release &lt;amount&gt;<br>.ltc release 0.00001<br>.release 10 ROGER</code></pre>
+        <!-- END RESERVE -->
+        <!-- START 2FA -->
+        <p><strong>2 Factor Authentication (2FA)</strong></p>
+        <p>2FA is an optional yet recommended piece of security offered to
+          users.&nbsp; <br>
+          2FA runs in 1 of 4 modes that can be set on a per-user basis:</p>
+        <ul>
+          <li>Disabled</li>
+          <li>Classic (release from reserve only)</li>
+          <li>Default (any command that moves coins)</li>
+          <li>Full (ALL commands except unlock, ping &amp; help)</li>
+        </ul>
+        <p><strong>WARNING! Only run set in PRIVATE! (PM/DM/messages etc)</strong><br>
+          While you can run confirm in a channel it's best to do in private as
+          well</p>
+        <p> </p>
+        <pre><code>.secret &lt;set|confirm&gt;</code></pre>
+        <p>Actions: set clear</p>
+        <ul>
+          <li>set: Bot PM's your 16 char TOTP 2FA (ie Google Authenticator,
+            authy etc) key.</li>
+          <li>confirm &lt;2FA code (6 digit no spaces)&gt; Use code from your
+            2FA app (NOT YOUR SECRET) to activate 2FA.</li>
+        </ul>
+        <p><strong>Unlocking 2FA</strong></p>
+        <p>To unlock 2FA to release coins from your reserve you must use the
+          following command: (Your reserves will remain open for 120 seconds or
+          the number of seconds specified. 0 unlocks for 1 day)</p>
+        <pre><code>.unlock &lt;2FA code (6 digit no spaces)&gt; &lt;seconds&gt;</code></pre>
+        <p><strong>Locking immediately<br>
+          </strong></p>
+        <p>The bot auto locks after the specified time but you can force a lock:</p>
+        <pre><code>.lock</code></pre>
+        <!-- END 2FA -->
+        <!-- START RAIN -->
+        <!-- <h2>Rain</h2>
+        <p>Rain allows a user to give each active member in the channel a specific amount of coins. Rain can either be public where the channel can see who rained the coins or ninja where the user raining is not announced to the channel.</p>        <p>Example: When there are 10 active users in a channel and a user decides to rain 10 coins each active user will receive 10 coins each.</p>        <p>To public rain use the command:</p>        <pre><code>.rain &lt;amount&gt;</code></pre>        <p>To ninja rain use the following command to send a message directly to the bot:</p>        <pre><code>/msg Wallet rain &lt;amount&gt;</code></pre> -->
+        <!-- END RAIN -->
+        <!-- START TIP -->
+        <h2>Tip</h2>
+        <p>You can send another user a tip using the following command:</p>
+        <pre><code>.tip &lt;user&gt; &lt;amount&gt;<br>.ltc tip &lt;user&gt; &lt;amount&gt;<br>reddit reply:<br>/u/walletbot tip &lt;amount&gt; &lt;coin&gt;</code></pre>
+        <!-- END TIP -->
+        <!-- START JACKPOT -->
+        <h2>Jackpot</h2>
+        The jackpot command lets users donate to the community @bonuspot with a
+        chance to multiply their donation sharing with active users with a soak
+        or reward:<br>
+        <br>
+        <pre><code>.jackpot &lt;amount&gt;</code></pre>
+        <!-- END JACKPOT -->
+        <!-- START RANDOM -->
+        <h2>Random</h2>
+        <p>Will randomly tip &lt;amount&gt; to random user(s).</p>
+        <ul>
+          <li>You can specify &lt;multiple&gt; users, defaults to 1.</li>
+        </ul>
+        <pre><code>.random &lt;amount&gt;<br>.random &lt;amount&gt;x&lt;multiple&gt;</code></pre>
+        <!-- END RANDOM -->
+        <!-- START VALUE -->
+        <h2>Value</h2>
+        <p>Val compares two coins or currencies.</p>
+        <pre><code>.val &lt;amount&gt; &lt;coin|currency&gt; &lt;coin|currency&gt;<br>(If not amount is entered then a shorter summary is shown)<br>HINT: Most coins have automatic shortcut!<br>.doge<br>.btc</code></pre>
+        <!-- END  VALUE -->
+        <!-- START RANKING -->
+        <h2>Rankings</h2>
+        <p>User rankings can be viewed in several different ways.</p>
+        <ul>
+          <li>View the top 10 users.</li>
+          <li>View your rank for &lt;days&gt;, defaults to 1</li>
+        </ul>
+        <pre><code>.top10 &lt;days&gt;<br>.top20 &lt;days&gt;<br>.myrank &lt;days&gt;</code></pre>
+        <!-- END RANKING -->
+        <!-- START REWARD -->
+        <h2>Reward</h2>
+        <p>Shares a proportional percentage of the &lt;amount&gt; to the top 10
+          or so suers.</p>
+        <ul>
+          <li>Can specify &lt;days&gt;</li>
+        </ul>
+        <pre><code>.reward &lt;amount&gt;<br>.reward &lt;amount&gt; &lt;minutes&gt;       </code></pre>
+        <!-- END  REWARD -->
+        <!-- START ACTIVE -->
+        <h2>Active</h2>
+        <p>You can check the active count with:</p>
+        <pre><code>.active</code></pre>
+        <!-- END ACTIVE -->
+        <!-- START WHOSENT -->
+        <h2>Whosent</h2>
+        <p>You can check who has tipped or shared coins with you using the
+          following command:</p>
+        <pre><code>.whosent</code></pre>
+        <!-- END WHOSENT -->
+        <!-- START IDLETIME -->
+        <h2>Idletime</h2>
+        <p>You can check your idletime available in each &lt;channel&gt; via PM:</p>
+        <pre><code>/msg Wallet idletime &lt;channel&gt;</code></pre>
+        <br>
+        <p>You can also check your idletime from the channel directly.</p>
+        <pre><code>.idletime</code></pre>
+        <!-- END IDLETIME -->
+        <!-- START SEEN -->
+        <h2>Last Seen</h2>
+        <p>To check the last time a &lt;user&gt; spoke in the channel use the
+          following command:</p>
+        <pre><code>.seen &lt;user&gt;</code></pre>
+        <!-- END SEEN -->
+        <!-- START COUNTDOWN -->
+        <h2>Countdown</h2>
+        <p>Displays the countdown to the bot's birthday as well as the dogecoin
+          birthday.</p>
+        <pre><code>.countdown</code></pre>
+        <!-- END COUNTDOWN -->
+        <!-- START DONATE -->
+        <h2>Donations</h2>
+        <p>Donations can be made to help fund the bot &amp; various other
+          approved funds.<br>
+          DOGE funds include:</p>
+        <ul>
+          <li>Wallet (Goes to bot developer &amp; owner Bill48105)</li>
+          <li>@devfund (Goes to DOGECOIN official devs)</li>
+          <li>@bonuspot (Goes to shared community pot used to fund faucet games
+            etc)</li>
+          <li>@dogecoinfah (Goes to soco's dogecoin folding@home)</li>
+          <li>@androidwallet (Goes to Langerhans Android wallet fund)<br>
+            (NOTE: You can specify a fund or if none is specified one is chosen
+            randomly)</li>
+        </ul>
+        <pre><code>.donate &lt;fund&gt; &lt;amount&gt;</code></pre>
+        <!-- END DONATE -->
+        <!-- START EXCHANGE -->
+        <h2>Exchange Check</h2>
+        <p>The bot allows you to check the exchange rate of many currencies
+          directly with commands. The available coins are as follows:</p>
+        <pre><code>.btc<br>.doge<br>.roger</code></pre>
+        <!-- END EXCHANGE -->
+        <!-- START MISC -->
+        <h2>Miscellaneous Commands</h2>
+        <p>The bot can do many many more interesting things. Here are just a few
+          of the fun commands available:</p>
+        <pre><code>.8ball &lt;Question&gt;<br>.c ℉ to convert to ℃<br>.f ℃ to convert to ℉</code></pre>
+        <p>See .help command where commands are broken down into "core" and
+          various groups by type.</p>
+        <p><br>
+          <!-- END MISC --> </p>
+        <!-- START DORMANCY -->
+        <h2>Maintaining Account &amp; Dormancy Policy</h2>
+        <p>The bot does not require creation of an account or logging in because
+          it relies on the authentication of each platform and then uses the
+          services of that platform to ensure you are logged in and account you
+          are logged in as. This is convenient but also poses some security
+          risks for each user to consider: </p>
+        <pre><code>IT IS <strong>HIGHLY RECOMMENDED</strong> ALL USERS SETUP &amp; USE 2FA ON THE BOT!</code></pre>
+        <br>
+        <ul>
+          <li>If your user account on that platform is hacked or compromised,
+            whoever logs in as you will be seen as you for bot use, including
+            having access to your balances.</li>
+          <li>If you lose access to your user account on a given platform, you
+            will&nbsp; lose access to that account on the bot, including access
+            to your balances.</li>
+          <li>If a platform suspends, locks, or deletes your user account, you
+            will lost access to that account on the bot, including access to
+            your balances.</li>
+          <li>If a platform allows users to register previously used accounts,
+            the bot will use that account for bot access including potentially
+            accessing the balances of a previous user.</li>
+        </ul>
+        <p>So what does all of that mean? Your bot account is only as secure as
+          the account you login as on any given platform..&nbsp; You should
+          protect your accounts with best-practice strong passwords (never
+          re-used!), and utilize advanced security features such as 2FA if they
+          offer it. But in addition it's highly recommended that you setup &amp;
+          enable TOTP 2FA on the bot too! Why? Not all platforms offer or
+          support 2FA but that 2FA only protects login to that account and DOES
+          NOT protect against account re-use abuse or or other attacks on your
+          bot account since once someone is logged into a given platform, the
+          bot assumes that user also has access to your bot account.</p>
+        <p>To help mitigate these attacks and help keep your bot account safe
+          the bot has the following dormancy &amp; recovery policy:</p>
+        <ul>
+          <li>Bot accounts of users without 2FA enabled not accessed for 90 days
+            will be auto locked.</li>
+          <li>Bot accounts of users with 2FA enabled not accessed for 6 months
+            will be auto locked.</li>
+          <li>All bot accounts of users not accessed for 1 year will be
+            automatically purged as dormant.</li>
+        </ul>
+        <p>Accounts <u>may</u> be unlocked or recovered from dormancy,
+          depending on the status of your platform account. The factors vary by
+          platform but include such things as the age (date of registration),
+          but mostly if you can provide reasonable proof that a bot account is
+          yours. <strong>Since the bot does not collect personal information
+            from users, the best way to do that is having had setup 2FA on the
+            bot BEFORE the lock or dormancy happens..&nbsp;</strong> </p>
+        <p><br>
+          <!-- END DORMANCY --> </p>
+        <!-- START COINS -->
+        <h2>"Are they MY coins when they're on the bot?"</h2>
+        <p>Well not really.. Why not?:</p>
+        <pre><code>The holder of the wallet &amp; keys is in control of the coins.<br>In short: If they're not in your wallet, they're not technically yours..</code></pre>
+        <p>"Wait what?!"<br>
+          Put another way:<br>
+        </p>
+        <pre><code>Never store coins outside your own control you are not willing to lose.<br>This is true of ANY online wallet or service, including bots.</code></pre>
+        <p></p>
+        <p>Let's explain..&nbsp; When you deposit coins into the bot, when
+          someone tips you coins on the bot, all user balances on the bot are
+          "off chain". Meaning they are tracked outside of the normal wallet
+          chain allowing for instant transfers without fees. For that
+          convenience you're putting your trust in whoever holds your coins
+          while "off chain", including the understanding that while reasonable
+          effort to track and protect your balances, and reasonable effort to
+          provide use of the bot including withdrawal of your balance to an
+          address on the chain (your own wallet, exchange etc), <strong>there
+            is no guarantee against loss no matter the cause.</strong><br>
+          <br>
+          <strong><u>So what are best practices for wallets, online wallets, or
+              bots?</u></strong></p>
+        <ul>
+          <li>Diversify your balances between wallets you hold &amp; online
+            services/bots.</li>
+          <li>Hardware wallets are safest. Official wallets next. Phone wallets
+            are risky.</li>
+          <li>Keep balances in online services/bots at minimum needed for use</li>
+          <li>Assess the risk of ANY wallet. Even your own wallet has risks.
+            BACKUP!</li>
+          <li>Keep your keys/passphrases private and stored safely. BACKUP!</li>
+          <li>Yes backing up is THAT important when managing your own wallet.</li>
+        </ul>
+        <p></p>
+        <!-- END COINS -->
+        <p></p>
+        <!-- START CREDITS -->
+        <h2>Credits</h2>
+        <p>The bot wouldn't be possible without the work of others who made
+          &amp; support the OS, libraries, crypto currency wallets, online
+          platforms, and various tools to make &amp; maintain it. <br>
+          Here is a list with links as thanks for their efforts:</p>
+        <ul>
+          <li><a id="Ubuntu" href="https://ubuntu.com/">Ubuntu</a></li>
+          <li><a id="Python" href="https://python.org/">Python</a></li>
+          <li><a id="Discord" href="https://discord.com/">Discord</a></li>
+          <li><a id="Freenode" href="https://freenode.net/">Freenode</a></li>
+          <li><a id="Telegram" href="https://telegram.org/">Telgram</a></li>
+          <li><a id="Matrix" href="">Matrix</a></li>
+          <li><a id="Keybase" href="">Keybase</a></li>
+          <li><a id="Rizon" href="">Rizon</a></li>
+          <li><a id="Reddit" href="">Reddit</a></li>
+          <li><a id="Dogecoin" href="https://dogecoin.com/">Dogecoin</a></li>
+          <li><a id="discord_py" href="https://github.com/Rapptz/discord.py">Rapptz
+              discord.py</a> </li>
+          <li><a id="aiotg_py" href="https://github.com/szastupov/aiotg">szastupov
+              aiotg</a> </li>
+          <li><a id="praw" href="https://github.com/praw-dev/praw">PRAW</a></li>
+          <li><a id="matrix_nio" href="https://matrix.org/docs/projects/sdk/matrix-nio">matrix-nio</a></li>
+        </ul>
+        <p> More to come! </p>
+        <!-- END CREDITS --> </section>
+    </div>
+    <!-- END MAIN -->
+    <!-- START FOOTER -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+    <!-- END FOOTER --><br>
+    <br>
+    <br>
+  </body>
+</html>
