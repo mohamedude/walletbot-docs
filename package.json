@@ -1,0 +1,40 @@
+{
+    "title": "WalletBot Docs",
+    "name": "walletbot-docs",
+    "version": "5.1.3",
+    "scripts": {
+        "start": "node_modules/.bin/gulp watch"
+    },
+    "description": "Documentations about the WalletBot commands",
+    "keywords": [
+        "css",
+        "sass",
+        "html",
+        "responsive",
+        "theme",
+        "template"
+    ],
+    "homepage": "https://walletbot-docs.netlify.app/",
+    "bugs": {
+        "url": "https://github.com/nazimboudeffa/walletbot-docs/issues"
+    },
+    "license": "MIT",
+    "author": "Bill48105",
+    "contributors": [
+        "Nazim Boudeffa"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/nazimboudeffa/walletbot-docs.git"
+    },
+    "dependencies": {
+        "bootstrap": "4.5.3",
+        "jquery": "3.5.1"
+    },
+    "devDependencies": {
+        "browser-sync": "2.26.13",
+        "del": "6.0.0",
+        "gulp": "4.0.2",
+        "merge-stream": "2.0.0"
+    }
+}
